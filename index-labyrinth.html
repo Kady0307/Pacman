@@ -1,0 +1,70 @@
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+    <title>Das erste HTML5 Spiel</title>
+    </head>
+    <body>
+    <button onclick='start_loop()'>'starten</button>
+    <span id='x'></span> X <span id='y'></span> Y
+    <div id='game_object' style='position: relative'>
+    <canvas width='27px' height='27px' id='background_canvas' style='background: gray; position: absolute; top: 0px; left: 0px;'></canvas>
+    <canvas width='27px' height='27px' id='main_canvas' style='position: absolute; top: 0px; left: 0px;' onmousemove='mouse(event)'>Leider kann dieser Browser das Spiel nicht ausfhren!</canvas>
+    </div>
+    <script type="text/javascript" src='game.js'>
+	</script>
+    </body>
+    </html>
+            <style type="text/css">
+            body{
+                background:#000;
+            }
+            .ATile{
+                position: absolute;
+                width:27px;
+                height:27px;
+                background-color:#09f;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            var TheMaze = [
+                "ahhhhhgxbhhdxehhhhhc",
+                "vp....o......o....pv",
+                "v.lhm...lhhm...lhm.v",
+                "v.....n......n.....v",
+                "v.n.n.v.ahhc.v.n.n.v",
+                "d.v.o.v.vxxq.v.o.v.b",
+                "x.v...v.vxxt.v...v.x",
+                "c.bhm.o.bhhr.o.lhd.a",
+                "v........x.........v",
+                "em.lc.am.lm.lc.am.lg",
+                "v...v.v......v.v...v",
+                "v.k.o.o.lhhm.o.o.k.v",
+                "vp................pv",
+                "bhhhhhcxahhcxahhhhhd"
+            ];
+            for(var Row=0; Row<14;Row++){
+                var styleTop=27*Row;
+                for(var Column=0; Column<20; Column++) {
+                    var Tile = document.createElement('div'),CurTileType = TheMaze[Row].charAt(Column);
+                    Tile.style.left=(27*Column)+'px';
+                    Tile.style.top=styleTop+'px';
+                    Tile.className = 'ATile';
+                    /* 
+                        Getting the images from http://www.masswerk.at/JavaPac/JS-PacMan2.html
+                        there's no image named . (dot)
+                        so I added here a condition, if the type is ., then get food.png
+                    */
+                    if(CurTileType == "."){
+                        Tile.style.backgroundImage = "url(http://www.masswerk.at/JavaPac/pacimages/food.png)";
+                    }else{
+                        Tile.style.backgroundImage = "url(http://www.masswerk.at/JavaPac/pacimages/"+CurTileType+".png)";
+                    }
+                    document.body.appendChild(Tile);
+                }
+            }
+        </script>
+    </body>
+</html>
+    
